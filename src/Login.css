@@ -1,0 +1,143 @@
+/* Login.css */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --krds-primary-blue: #0056b3;
+    /* Standard Accessible Blue */
+    --krds-text-primary: #1a1a1a;
+    --krds-text-secondary: #555555;
+    --krds-border-color: #d1d5db;
+    --krds-bg-color: #f8f9fa;
+    --krds-white: #ffffff;
+    --krds-radius: 4px;
+    /* Simpler, sharper radius for KRDS feel */
+}
+
+
+
+.login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100dvh;
+    /* Mobile viewport height - exact fit */
+    padding: 1rem;
+    width: 100%;
+    overflow: hidden;
+    /* Ensure content stays within viewport */
+}
+
+.login-card {
+    background: var(--krds-white);
+    padding: 2.5rem 2rem;
+    /* Reduced top/bottom padding slightly */
+    width: 100%;
+    max-width: 400px;
+    border: 1px solid var(--krds-border-color);
+    border-radius: var(--krds-radius);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    /* Very subtle shadow */
+}
+
+.login-title {
+    margin-bottom: 2rem;
+    color: var(--krds-text-primary);
+    font-weight: 700;
+    font-size: 1.75rem;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--krds-text-secondary);
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.9rem;
+    /* Larger touch target */
+    border: 1px solid var(--krds-border-color);
+    border-radius: var(--krds-radius);
+    font-size: 1rem;
+    font-family: inherit;
+    /* Ensure font is consistent */
+    color: var(--krds-text-primary);
+    background-color: var(--krds-white);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-input:focus {
+    border-color: var(--krds-primary-blue);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.1);
+}
+
+.form-input::placeholder {
+    color: #999;
+}
+
+.login-button {
+    width: 100%;
+    padding: 1rem;
+    /* Min 44px height usually covered by this padding + line height */
+    background-color: var(--krds-primary-blue);
+    color: white;
+    border: none;
+    border-radius: var(--krds-radius);
+    font-size: 1.1rem;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background-color 0.2s;
+}
+
+.login-button:hover {
+    background-color: #004494;
+    /* Darker shade */
+}
+
+.login-button:active {
+    background-color: #003370;
+}
+
+/* Mobile / Web App adaptation */
+@media (max-width: 480px) {
+    .login-container {
+        align-items: center;
+        /* Center vertically specifically */
+        padding: 0;
+        background-color: var(--krds-white);
+        height: 70dvh;
+    }
+
+    .login-card {
+        border: none;
+        box-shadow: none;
+        border-radius: 0;
+        padding: 2rem;
+        width: 100%;
+        max-width: 100%;
+        /* Ensure full width */
+        height: 100%;
+        /* Fill container */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .login-title {
+        font-size: 2rem;
+        margin-bottom: 3rem;
+    }
+}

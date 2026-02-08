@@ -1,0 +1,197 @@
+/* SituationReport specific styles */
+
+/* Ensure the main content fills the remaining height and uses flexbox */
+.report-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: calc(100dvh - 56px);
+    /* Subtract approximate header height */
+    padding: 0;
+    /* Remove default padding for full width feel */
+    max-width: 100%;
+    /* Ensure full width on mobile */
+    overflow: hidden;
+    /* Prevent body scroll */
+}
+
+/* Card expands to fill the space */
+.report-card {
+    background-color: white;
+    /* Remove border radius for full mobile feel, or keep small */
+    border-radius: 0;
+    padding: 1rem;
+    box-shadow: none;
+    /* Simplify for mobile */
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.report-subtitle {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: #111827;
+    flex-shrink: 0;
+}
+
+.search-container {
+    margin-bottom: 1rem;
+    flex-shrink: 0;
+}
+
+.search-input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    font-size: 0.7rem;
+    box-sizing: border-box;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+/* Table container fills the remaining vertical space */
+.table-container {
+    flex: 1;
+    /* Grow to fill space */
+    overflow-x: auto;
+    overflow-y: auto;
+    /* Internal scroll */
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+    min-height: 0;
+    /* Crucial for flex nested scrolling */
+}
+
+.data-table {
+    width: 100%;
+    table-layout: fixed;
+    /* Fix column widths */
+    border-collapse: collapse;
+    font-size: 0.6rem;
+    /* Reduced font size */
+    min-width: 100%;
+    /* Ensure it fills container */
+}
+
+.table-header {
+    background-color: #f3f4f6;
+    text-align: center;
+    /* Center align headers */
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.table-th {
+    padding: 0.3rem;
+    /* Reduced padding */
+    border-bottom: 2px solid #e5e7eb;
+    white-space: nowrap;
+    /* Force 1 line header */
+    text-align: center;
+    /* Ensure th is centered */
+}
+
+.table-row {
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.table-cell {
+    padding: 0.3rem;
+    /* Reduced padding */
+    word-break: keep-all;
+    white-space: nowrap;
+    /* Force 1 line cell */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* Ellipsis for safety */
+    text-align: left;
+    /* Left align content */
+}
+
+.table-cell-bold {
+    padding: 0.3rem;
+    /* Reduced padding */
+    font-weight: bold;
+    word-break: keep-all;
+    white-space: nowrap;
+    /* Force 1 line cell */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+    /* Left align content */
+}
+
+.empty-message {
+    padding: 1rem;
+    text-align: center;
+    color: #6b7280;
+}
+
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.25rem;
+    color: #333;
+}
+
+.close-button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666;
+}
+
+.map-container {
+    width: 100%;
+    height: 400px;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.clickable-row {
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.clickable-row:hover {
+    background-color: #f8f9fa;
+}
