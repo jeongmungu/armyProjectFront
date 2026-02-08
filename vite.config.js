@@ -11,12 +11,12 @@ export default defineConfig({
       },
     }),
   ],
-  server: {
+  server: {/*
     host: '0.0.0.0', // 모든 IP로부터의 접속을 허용
     port: 5173,      // 포트 번호 확인
     https: {
-      key: fs.readFileSync('../certs/key.pem'),
-      cert: fs.readFileSync('../certs/cert.pem'),
+      // key: fs.readFileSync('../certs/key.pem'),
+      // cert: fs.readFileSync('../certs/cert.pem'),
     },
     proxy: {
       '/login': {
@@ -39,6 +39,6 @@ export default defineConfig({
         changeOrigin: true,
         secure: false,
       },
-    }
+    }*/
   }
 })
