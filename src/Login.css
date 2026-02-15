@@ -20,35 +20,83 @@
 
 
 .login-container {
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    position: relative;
+}
+
+.login-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    /* Darken background image */
+    backdrop-filter: blur(2px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.login-content {
     display: flex;
     align-items: center;
-    justify-content: center;
-    height: 100dvh;
-    /* Mobile viewport height - exact fit */
-    padding: 1rem;
+    gap: 4rem;
+    max-width: 1200px;
     width: 100%;
-    overflow: hidden;
-    /* Ensure content stays within viewport */
+    justify-content: center;
 }
 
 .login-card {
-    background: var(--krds-white);
-    padding: 2.5rem 2rem;
-    /* Reduced top/bottom padding slightly */
     width: 100%;
-    max-width: 400px;
-    border: 1px solid var(--krds-border-color);
-    border-radius: var(--krds-radius);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    /* Very subtle shadow */
+    max-width: 420px;
+    background: rgba(26, 26, 26, 0.7);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 3rem;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+.login-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--roka-green), var(--roka-gold));
+}
+
+.roka-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    color: var(--roka-gold);
+    font-weight: 900;
+    letter-spacing: 2px;
+    opacity: 0.8;
+    font-size: 0.8rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .login-title {
-    margin-bottom: 2rem;
-    color: var(--krds-text-primary);
-    font-weight: 700;
-    font-size: 1.75rem;
     text-align: center;
+    color: var(--roka-text-light);
+    margin-bottom: 2.5rem;
+    font-size: 2rem;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .form-group {
@@ -58,29 +106,28 @@
 .form-label {
     display: block;
     margin-bottom: 0.5rem;
-    color: var(--krds-text-secondary);
-    font-size: 0.95rem;
+    color: var(--roka-text-muted);
+    font-size: 0.9rem;
     font-weight: 500;
 }
 
 .form-input {
     width: 100%;
-    padding: 0.9rem;
-    /* Larger touch target */
-    border: 1px solid var(--krds-border-color);
-    border-radius: var(--krds-radius);
+    padding: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
     font-size: 1rem;
-    font-family: inherit;
-    /* Ensure font is consistent */
-    color: var(--krds-text-primary);
-    background-color: var(--krds-white);
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
 }
 
 .form-input:focus {
-    border-color: var(--krds-primary-blue);
     outline: none;
-    box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.1);
+    border-color: var(--roka-green);
+    background: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 0 2px rgba(76, 140, 43, 0.3);
 }
 
 .form-input::placeholder {
@@ -90,25 +137,24 @@
 .login-button {
     width: 100%;
     padding: 1rem;
-    /* Min 44px height usually covered by this padding + line height */
-    background-color: var(--krds-primary-blue);
+    background: linear-gradient(135deg, var(--roka-green) 0%, #3d5c28 100%);
     color: white;
     border: none;
-    border-radius: var(--krds-radius);
+    border-radius: 8px;
     font-size: 1.1rem;
-    font-weight: 500;
+    font-weight: 600;
     cursor: pointer;
+    transition: all 0.3s ease;
     margin-top: 1rem;
-    transition: background-color 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 .login-button:hover {
-    background-color: #004494;
-    /* Darker shade */
-}
-
-.login-button:active {
-    background-color: #003370;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(76, 140, 43, 0.4);
+    background: linear-gradient(135deg, #5da339 0%, #4b6e32 100%);
 }
 
 /* Mobile / Web App adaptation */

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Dashboard.css';
 import './CasualtyReport.css';
@@ -11,6 +11,19 @@ const CasualtyReport = () => {
     const [report, setReport] = useState(null);
     const [error, setError] = useState(null);
     const [step, setStep] = useState(1); // 1: Input, 2: Confirm, 3: Result
+    const [currentTime, setCurrentTime] = useState(new Date());
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrentTime(new Date());
+        }, 1000);
+        return () => clearInterval(timer);
+    }, []);
+
+    const formatTime = (date) => {
+        if (!date || isNaN(date.getTime())) return '';
+        return `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일 ${date.getHours()}:${date.getMinutes().toString().padStart(2, '0')}:${date.getSeconds().toString().padStart(2, '0')}`;
+    };
 
     const handleSearch = async () => {
         if (!srvno) return;
@@ -34,10 +47,14 @@ const CasualtyReport = () => {
 
     const submitReport = async (lat, lng) => {
         try {
+            const now = new Date();
+            const formattedTime = `${now.getFullYear()}년 ${now.getMonth() + 1}월 ${now.getDate()}일 ${now.getHours()}:${now.getMinutes().toString().padStart(2, '0')} 경`;
+
             const payload = {
                 srvno: soldier.srvno,
                 lat: lat,
-                lng: lng
+                lng: lng,
+                timestamp: formattedTime
             };
 
             const response = await fetch('https://armyprojectbackend.onrender.com/generate-report', {
@@ -81,6 +98,54 @@ const CasualtyReport = () => {
                 submitReport(38.00, 127.00);
             }
         );
+    };
+
+    const handleSendReport = async () => {
+        if (!report || !soldier) return;
+        setLoading(true);
+
+        try {
+            // Parse location string "lat, lng"
+            const [latStr, lngStr] = report.location.split(', ');
+            const lat = parseFloat(latStr);
+            const lng = parseFloat(lngStr);
+
+            // Remove °C from weather string
+            const cleanedWeather = report.weather.replace('°C', '');
+
+            const payload = {
+                srvno: soldier.srvno,
+                lat: lat,
+                lng: lng,
+                report_content: report.report,
+                weather: cleanedWeather,
+                location: report.location
+            };
+
+            const response = await fetch('https://armyprojectbackend.onrender.com/submit-report', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(payload),
+            });
+
+            if (response.ok) {
+                alert("보고서가 전송되었습니다.");
+                // Optional: Navigate back or reset
+                setStep(1);
+                setSrvno('');
+                setReport(null);
+                setSoldier(null);
+            } else {
+                alert("보고서 전송에 실패했습니다.");
+            }
+        } catch (error) {
+            console.error("Error sending report:", error);
+            alert("전송 중 오류가 발생했습니다.");
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -152,6 +217,9 @@ const CasualtyReport = () => {
                                 📍 <strong>현재 위치</strong>와 🌩️ <strong>기상 정보</strong>를 자동으로 수집하여<br />
                                 초기 사망 보고서를 생성합니다.
                             </p>
+                            <div className="realtime-clock">
+                                🕒 현재 보고 일시: <strong>{currentTime ? formatTime(currentTime) : ''}</strong>
+                            </div>
                         </div>
 
                         <button
@@ -182,10 +250,11 @@ const CasualtyReport = () => {
                             />
                             <div className="action-buttons">
                                 <button
-                                    onClick={() => alert("전송 기능은 아직 구현되지 않았습니다.")}
+                                    onClick={handleSendReport}
                                     className="send-btn"
+                                    disabled={loading}
                                 >
-                                    보고서<br />전송
+                                    {loading ? '전송중...' : <>보고서<br />전송</>}
                                 </button>
                                 <button
                                     onClick={() => setStep(1)}

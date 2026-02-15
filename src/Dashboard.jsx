@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import hogukiIcon from './assets/hoguki_icon.png';
 import './Dashboard.css';
 
 const Dashboard = () => {
@@ -47,10 +48,18 @@ const Dashboard = () => {
     return (
         <div className="dashboard-container">
             <header className="dashboard-header">
-                <h1 className="dashboard-title">전사망자 관리</h1>
+                <div className="header-content">
+                    {/* <img src={hogukiIcon} alt="Hoguk-i" className="header-mascot" /> */}
+                    <h1 className="dashboard-title">전사망자 관리체계</h1>
+                </div>
+                <div className="roka-badge-small">ROKA</div>
             </header>
 
             <main className="dashboard-content">
+                <div className="welcome-banner">
+                    <h2 className="welcome-text">정예 육군, 호국이와 함께!</h2>
+                    <p className="welcome-subtext">오늘도 임무 수행에 수고가 많으십니다.</p>
+                </div>
                 <div className="menu-grid">
                     {menuItems.map((item) => (
                         <div
@@ -69,12 +78,12 @@ const Dashboard = () => {
                     ))}
                 </div>
                 <div className="logout-btn-container">
-                    <button className="logout-btn">로그아웃</button>
+                    <button className="logout-btn" onClick={() => navigate('/')}>로그아웃</button>
                 </div>
             </main>
 
             <footer className="dashboard-footer">
-                <p className="footer-text">© 2026 전사망자 관리 시스템. All rights reserved.</p>
+                <p className="footer-text">© 2026 대한민국 육군 전사망자 관리체계. All rights reserved.</p>
             </footer>
         </div>
     );

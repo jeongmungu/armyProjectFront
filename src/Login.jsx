@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import rokaLoginBg from './assets/roka_login_bg.png';
 import './Login.css';
 
 const Login = () => {
@@ -45,38 +46,41 @@ const Login = () => {
     };
 
     return (
-        <div className="login-container">
-            <div className="login-card">
-                <h2 className="login-title">전사망자 관리</h2>
-                <form onSubmit={handleSubmit}>
-                    <div className="form-group">
-                        <label className="form-label" htmlFor="email">Email</label>
-                        <input
-                            type="email"
-                            id="email"
-                            className="form-input"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            placeholder="army@army.mil"
-                            required
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label className="form-label" htmlFor="password">Password</label>
-                        <input
-                            type="password"
-                            id="password"
-                            className="form-input"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            placeholder="••••••••"
-                            required
-                        />
-                    </div>
-                    <button type="submit" className="login-button">
-                        Sign In
-                    </button>
-                </form>
+        <div className="login-container" style={{ backgroundImage: `url(${rokaLoginBg})` }}>
+            <div className="login-overlay">
+                <div className="login-card">
+                    <div className="roka-badge">ROKA</div>
+                    <h2 className="login-title">전사망자 관리체계</h2>
+                    <form onSubmit={handleSubmit}>
+                        <div className="form-group">
+                            <label className="form-label" htmlFor="email">군 이메일</label>
+                            <input
+                                type="email"
+                                id="email"
+                                className="form-input"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                placeholder="army@army.mil"
+                                required
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label className="form-label" htmlFor="password">비밀번호</label>
+                            <input
+                                type="password"
+                                id="password"
+                                className="form-input"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                placeholder="••••••••"
+                                required
+                            />
+                        </div>
+                        <button type="submit" className="login-button">
+                            로그인
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     );

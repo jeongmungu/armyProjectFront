@@ -1,18 +1,25 @@
 /* NotificationManager.css */
 
+/* Layout similar to SituationReport */
 .notification-content {
-    background-color: #f8f9fa;
-    /* padding: 1rem; */
-    min-height: calc(100vh - 60px);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 60px);
+    overflow: hidden;
+    padding: 10px;
+    /* Add some padding for better spacing */
 }
 
+/* Tabs Redesign */
 .tabs {
     display: flex;
-    margin-bottom: 20px;
-    background: white;
+    margin-bottom: 10px;
+    background: rgba(0, 0, 0, 0.2);
     padding: 5px;
     border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    flex-shrink: 0;
 }
 
 .tab-button {
@@ -22,52 +29,82 @@
     background: none;
     font-size: 1rem;
     font-weight: 500;
-    color: #666;
+    color: var(--roka-text-muted, #aaa);
+    /* Default muted text */
     cursor: pointer;
     border-radius: 6px;
     transition: all 0.2s;
 }
 
-.tab-button.active {
-    background-color: #0056b3;
+.tab-button:hover {
     color: white;
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.tab-button.active {
+    background-color: var(--roka-green, #4b5320);
+    /* ROKA Green or Gold depending on preference, Green fits 'active' */
+    color: var(--roka-gold, #d4af37);
     font-weight: 700;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .tab-content {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    background: transparent;
+    /* Remove white background */
+    padding: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    /* Important for inner scrolling */
 }
 
 .section-title {
     font-size: 1.2rem;
     margin-bottom: 15px;
-    color: #333;
-    border-bottom: 2px solid #f0f0f0;
+    color: var(--roka-gold, #d4af37);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
     padding-bottom: 10px;
+    flex-shrink: 0;
 }
 
 /* Form Styles */
+.notification-form-container {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow-y: auto;
+}
+
 .notification-form .form-group {
     margin-bottom: 15px;
 }
 
 .notification-form label {
+    text-align: left;
     display: block;
     margin-bottom: 5px;
     font-weight: 500;
-    color: #555;
+    color: var(--roka-gold, #d4af37);
 }
 
 .notification-form .form-input {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 6px;
     font-size: 1rem;
     box-sizing: border-box;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: white;
+}
+
+.notification-form .form-input:focus {
+    outline: none;
+    border-color: var(--roka-gold, #d4af37);
+    box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
 }
 
 .textarea-input {
@@ -77,8 +114,8 @@
 
 .submit-button {
     width: 100%;
-    background-color: #0056b3;
-    color: white;
+    background-color: var(--roka-gold, #d4af37);
+    color: #1a1a1a;
     padding: 12px;
     border: none;
     border-radius: 6px;
@@ -86,55 +123,125 @@
     font-weight: 700;
     cursor: pointer;
     margin-top: 10px;
+    transition: background-color 0.2s;
 }
 
 .submit-button:hover {
-    background-color: #004494;
+    background-color: #b3922b;
 }
 
-/* Table Styles */
+/* Table Styles - Matching SituationReport */
+.history-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
 .table-responsive {
+    flex: 1;
+    overflow-y: auto;
     overflow-x: auto;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.2);
+    /* Exact match */
 }
 
 .history-table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
+    /* Matched SituationReport */
+    min-width: 100%;
 }
 
 .history-table th {
-    background-color: #f1f3f5;
-    padding: 10px;
-    text-align: left;
-    color: #495057;
-    font-weight: 600;
+    background-color: rgba(76, 140, 43, 0.3);
+    /* Greenish header */
+    padding: 0.8rem 0.5rem;
+    /* Matched padding */
+    text-align: center;
+    color: var(--roka-gold, #d4af37);
+    font-weight: 700;
+    border-bottom: 2px solid var(--roka-green, #4b5320);
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    white-space: nowrap;
 }
 
 .history-table td {
-    padding: 12px 10px;
-    border-bottom: 1px solid #e9ecef;
-    color: #495057;
+    padding: 0.8rem 0.5rem;
+    /* Matched padding */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    /* Subtle dark border */
+    color: var(--roka-text-light, #e5e7eb);
+    text-align: center;
+    /* Center align all cells */
+    vertical-align: middle;
+}
+
+/* Row Hover Effect */
+.history-table tr:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Minimize Date Column Width to content */
+.history-table th:first-child,
+.history-table td:first-child {
+    width: 1%;
+    white-space: nowrap;
+    padding-right: 15px;
+    /* Restored padding for breathing room */
 }
 
 .status-badge {
-    padding: 4px 8px;
+    padding: 4px 10px;
     border-radius: 12px;
-    font-size: 0.8rem;
-    font-weight: 600;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border: 1px solid transparent;
 }
 
 .status-badge.success {
-    background-color: #d3f9d8;
-    color: #2b8a3e;
+    background-color: rgba(43, 138, 62, 0.2);
+    color: #b2f2bb;
+    border-color: rgba(43, 138, 62, 0.3);
 }
 
 .status-badge.failed {
-    background-color: #ffe3e3;
-    color: #c92a2a;
+    background-color: rgba(201, 42, 42, 0.2);
+    color: #ffc9c9;
+    border-color: rgba(201, 42, 42, 0.3);
 }
 
 .status-badge.pending {
-    background-color: #fff3bf;
-    color: #f08c00;
+    background-color: rgba(230, 126, 34, 0.2);
+    color: #ffd8a8;
+    border-color: rgba(230, 126, 34, 0.3);
+}
+
+/* Modal Detail Styles */
+.detail-row {
+    margin-bottom: 10px;
+    display: flex;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 8px;
+}
+
+.detail-label {
+    min-width: 80px;
+    color: var(--roka-gold);
+    font-weight: 600;
+    margin-right: 15px;
+}
+
+.detail-value {
+    color: var(--roka-text-light);
+    flex: 1;
+    word-break: break-all;
+    white-space: pre-wrap;
+    /* Critical for multiline display */
+    text-align: left !important;
+    /* Explicitly align left */
 }
