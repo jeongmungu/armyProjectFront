@@ -53,7 +53,7 @@ const Dashboard = () => {
     React.useEffect(() => {
         const fetchUnitStats = async () => {
             try {
-                const response = await fetch('https://armyprojectbackend.onrender.comdashboard/unit-stats');
+                const response = await fetch('https://armyprojectbackend.onrender.com/dashboard/unit-stats');
                 if (response.ok) {
                     const data = await response.json();
                     const items = data.map((item, index) => ({

@@ -24,7 +24,7 @@ const Login = () => {
         e.preventDefault();
 
         try {
-            const response = await fetch('https://armyprojectbackend.onrender.comlogin', {
+            const response = await fetch('https://armyprojectbackend.onrender.com/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

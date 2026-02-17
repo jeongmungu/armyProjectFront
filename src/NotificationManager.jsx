@@ -19,7 +19,7 @@ const NotificationManager = () => {
     React.useEffect(() => {
         const fetchHistory = async () => {
             try {
-                const response = await fetch('https://armyprojectbackend.onrender.comnotifications');
+                const response = await fetch('https://armyprojectbackend.onrender.com/notifications');
                 if (response.ok) {
                     const data = await response.json();
                     setHistoryData(data);

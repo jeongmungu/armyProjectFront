@@ -26,7 +26,7 @@ const SituationReport = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('https://armyprojectbackend.onrender.comcasualties');
+                const response = await fetch('https://armyprojectbackend.onrender.com/casualties');
                 if (response.ok) {
                     const data = await response.json();
                     setCasualties(data);
