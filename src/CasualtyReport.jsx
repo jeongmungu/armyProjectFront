@@ -30,7 +30,7 @@ const CasualtyReport = () => {
         setLoading(true);
         setError(null);
         try {
-            const response = await fetch(`https://armyprojectbackend.onrender.com/insa/${srvno}`);
+            const response = await fetch(`https://armyprojectbackend.onrender.cominsa/${srvno}`);
             if (response.ok) {
                 const data = await response.json();
                 setSoldier(data);
@@ -57,7 +57,7 @@ const CasualtyReport = () => {
                 timestamp: formattedTime
             };
 
-            const response = await fetch('https://armyprojectbackend.onrender.com/generate-report', {
+            const response = await fetch('https://armyprojectbackend.onrender.comgenerate-report', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -122,7 +122,7 @@ const CasualtyReport = () => {
                 location: report.location
             };
 
-            const response = await fetch('https://armyprojectbackend.onrender.com/submit-report', {
+            const response = await fetch('https://armyprojectbackend.onrender.comsubmit-report', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

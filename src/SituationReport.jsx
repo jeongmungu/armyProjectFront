@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 import './Dashboard.css';
 import './SituationReport.css';
@@ -10,11 +10,12 @@ const containerStyle = {
 };
 
 const SituationReport = () => {
-    const navigate = useNavigate();
+    const navigate = useNavigate(); // Restored navigate
+    const location = useLocation();
     const [casualties, setCasualties] = useState([]);
     const [filteredCasualties, setFilteredCasualties] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [searchTerm, setSearchTerm] = useState('');
+    const [searchTerm, setSearchTerm] = useState(location.state?.searchQuery || '');
     const [selectedCasualty, setSelectedCasualty] = useState(null);
 
     const { isLoaded } = useJsApiLoader({
@@ -25,7 +26,7 @@ const SituationReport = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('https://armyprojectbackend.onrender.com/casualties');
+                const response = await fetch('https://armyprojectbackend.onrender.comcasualties');
                 if (response.ok) {
                     const data = await response.json();
                     setCasualties(data);

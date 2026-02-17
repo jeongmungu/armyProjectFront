@@ -63,38 +63,90 @@
 }
 
 .welcome-banner {
-    margin-bottom: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
     text-align: center;
-    background: linear-gradient(135deg, var(--roka-green) 0%, rgba(61, 92, 40, 0.6) 100%);
-    padding: 1.5rem;
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: linear-gradient(to bottom, rgba(10, 10, 10, 0.8), rgba(30, 30, 30, 0.9));
+    padding: 1.5rem 1.5rem;
+    border-radius: 2px;
+    border-top: 1px solid var(--roka-gold);
+    border-bottom: 1px solid var(--roka-gold);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    position: relative;
+}
+
+.welcome-banner::before {
+    content: 'ROKA';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 5rem;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.03);
+    z-index: 0;
+    letter-spacing: 10px;
+    pointer-events: none;
 }
 
 .welcome-text {
     margin: 0;
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: white;
-    margin-bottom: 0.5rem;
+    font-family: serif;
+    /* Use serif for a more traditional/noble look */
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--roka-gold);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    letter-spacing: 0.5px;
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .welcome-subtext {
     margin: 0;
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.85rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
 }
 
 /* Menu Grid */
 .menu-grid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+    /* Force 3 columns always */
+    gap: 8px;
+    /* Compact gap */
 }
 
+.menu-grid2 {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+/* Menu Grid */
+.menu-grid3 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* Force 3 columns always */
+    gap: 8px;
+    /* Compact gap */
+}
+
+
+/* Removed media query that was preventing horizontal layout on small screens */
+
 @media (min-width: 640px) {
-    .menu-grid {
-        grid-template-columns: repeat(2, 1fr);
+
+    /* Lowered breakpoint */
+    .menu-grid2 {
+        grid-template-columns: 1fr;
     }
 }
 
@@ -102,12 +154,18 @@
     background-color: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 12px;
-    padding: 1.5rem;
+    padding: 1rem;
+    /* Reduced padding */
     display: flex;
+    flex-direction: column;
+    /* Stack vertically */
     align-items: center;
+    justify-content: center;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    min-height: 100px;
+    min-height: 90px;
+    /* Reduced min-height */
+    text-align: center;
 }
 
 .menu-card:hover {
@@ -121,13 +179,79 @@
     transform: scale(0.98);
 }
 
-.menu-icon {
+
+.menu-card2 {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 6px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    min-height: 100px;
+}
+
+.menu-card2:hover {
+    background-color: rgba(76, 140, 43, 0.2);
+    border-color: var(--roka-green);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.menu-card2:active {
+    transform: scale(0.98);
+}
+
+.menu-card2 .menu-title {
+    font-size: 1.2rem;
+    align-self: center;
+    justify-self: center;
+    text-align: center;
+}
+
+.menu-card2 .menu-icon {
     font-size: 2rem;
-    margin-right: 1.25rem;
+    width: 50px;
+    height: 50px;
+}
+
+.menu-card3 {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    min-height: 100px;
+}
+
+.menu-card3:hover {
+    background-color: rgba(76, 140, 43, 0.2);
+    border-color: var(--roka-green);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.menu-card3:active {
+    transform: scale(0.98);
+}
+
+
+
+.menu-icon {
+    font-size: 1.8rem;
+    /* Slightly smaller icon */
+    margin-right: 0;
+    margin-bottom: 0.5rem;
+    /* Reduced margin */
     color: var(--roka-gold);
     background-color: rgba(212, 175, 55, 0.1);
-    width: 56px;
-    height: 56px;
+    width: 50px;
+    /* Slightly smaller container */
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -136,14 +260,18 @@
 }
 
 .menu-text {
-    text-align: left;
+    text-align: center;
 }
 
 .menu-title {
-    font-size: 1.1rem;
+    font-size: 0.9rem;
+    /* Reduced font size */
     font-weight: 700;
     margin: 0 0 0.25rem 0;
     color: var(--roka-text-light);
+    word-break: keep-all;
+    /* Prevent awkward breaks */
+    line-height: 1.2;
 }
 
 .menu-desc {
@@ -152,6 +280,13 @@
     margin: 0;
     line-height: 1.4;
     word-break: keep-all;
+    display: block;
+    /* Ensure visibility */
+}
+
+/* Hide descriptions on top menu cards specifically if they were to have descriptions */
+.menu-card .menu-desc {
+    display: none;
 }
 
 /* Logout Button */
