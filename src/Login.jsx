@@ -50,7 +50,7 @@ const Login = () => {
             <div className="login-overlay">
                 <div className="login-card">
                     <div className="roka-badge">ROKA</div>
-                    <h2 className="login-title">전사망자 관리체계</h2>
+                    <h2 className="login-title">전사망자<br />관리체계</h2>
                     <form onSubmit={handleSubmit}>
                         <div className="form-group">
                             <label className="form-label" htmlFor="email">군 이메일</label>
